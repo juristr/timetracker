@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="pomodoro">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <script type="text/x-handlebars" data-template-name="application">
     <div class="container">
 
         <!-- Static navbar -->
@@ -30,12 +29,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!--
         <div class="jumbotron">
         <h1>
             Pomodoro tracker
@@ -44,19 +45,20 @@
             Track and determine where you loose your time.
         </p>
         </div>
-
-        {{outlet}}
+        -->
+        <div class="row" ng-view></div>
     </div>
-    </script>
     
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/handlebars/handlebars.min.js"></script>
-
-    <script src="http://builds.emberjs.com/ember-latest.js"></script>
-    <script src="bower_components/ember-data/ember-data.js"></script>
-    <script src="bower_components/ember-localstorage-adapter/localstorage_adapter.js"></script>
+    <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
     
     <script src="app/app.js"></script>
+    <script src="app/tracker/trackerListController.js"></script>
+
+    <script src="app/directives/ngEnterDirective.js"></script>
+    <script src="app/directives/formattedSeconds.js"></script>
 
     <script src="//localhost:35729/livereload.js"></script>
 </body>

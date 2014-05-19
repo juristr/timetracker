@@ -1,0 +1,40 @@
+<div class="col-md-12">
+
+<h2>Tracker List</h2>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="text" class="form-control" ng-model="taskDescription" ng-enter="addTask(taskDescription)" />
+        </div>
+    </div>
+
+    <hr/>
+    
+    <div class="row" ng-repeat="task in tasks">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-xs-2">
+                        <button class="btn btn-default" ng-if="task.isPlaying===false" ng-click="play(task)">
+                            <i class="fa fa-play"></i>
+                        </button>
+                        <button class="btn btn-default" ng-if="task.isPlaying==true" ng-click="stop(task)">
+                            <i class="fa fa-stop"></i>
+                        </button>
+                    </div>
+                    <div class="col-xs-6">
+                        <strong>{{ task.title }}</strong>
+                    </div>
+                    <div class="col-xs-4">
+                        <time>
+                            {{ task.timeSpent | formattedSeconds }}
+                        </time>
+
+                        <span class="pull-right" ng-click="deleteTask(task)"><i class="fa fa-times"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
