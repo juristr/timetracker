@@ -11,8 +11,16 @@
                         title: 'demo'
                     }];
 
+            var saveToLocalStorage = function(taskList){
+                localStorageService.set('pomodoro-tracker-app', taskList);
+            };
+            var loadFromLocalStorage = function(){
+                return localStorageService.get('pomodoro-tracker-app') || [];
+            };
+
             return {
                 getAllTasks: function(){
+                    taskList = loadFromLocalStorage();
                     return taskList;
                 },
 
@@ -23,6 +31,8 @@
                     task.isPlaying = false;
 
                     taskList.push(task);
+
+                    saveToLocalStorage(taskList);
                 },
 
                 deleteTask: function(task){
@@ -36,6 +46,8 @@
 
                     // remove element
                     taskList.splice(i, 1);
+
+                    saveToLocalStorage(taskList);
                 }
 
             };
