@@ -8,13 +8,13 @@
 
     <div class="row col-xs-12">
         <p>
-            <strong>Total amount of time today: {{ totalTimeSpent() | formattedSeconds }}</strong>
+            <strong>Total amount of time: {{ totalTimeSpent() | formattedSeconds }}</strong>
         </p>
     </div>
 
-    <hr/>
+    <hr style="clear:both"/>
 
-    <div class="row" ng-repeat="task in tasks">
+    <div class="row" ng-repeat="task in tasks | filter:taskDescription">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
