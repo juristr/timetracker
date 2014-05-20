@@ -40,6 +40,7 @@
 
                 //reset
                 task.startTime = undefined;
+                taskListService.saveTasks();
             };
 
             $scope.addTask = function(taskDescription){

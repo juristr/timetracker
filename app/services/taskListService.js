@@ -5,11 +5,7 @@
     angular.module('pomodoro')
         .factory('taskListService', ['localStorageService', function(localStorageService){
 
-            var taskList = [{
-                        id: guid(),
-                        isPlaying: false,
-                        title: 'demo'
-                    }];
+            var taskList = [];
 
             var saveToLocalStorage = function(taskList){
                 localStorageService.set('pomodoro-tracker-app', taskList);
@@ -47,6 +43,10 @@
                     // remove element
                     taskList.splice(i, 1);
 
+                    saveToLocalStorage(taskList);
+                },
+
+                saveTasks: function(){
                     saveToLocalStorage(taskList);
                 }
 
