@@ -1,15 +1,19 @@
 <div class="col-md-12">
 
-<h2>Tracker List</h2>
-
     <div class="row">
         <div class="col-xs-12">
-            <input type="text" class="form-control" ng-model="taskDescription" ng-enter="addTask(taskDescription)" />
+            <input type="text" class="form-control" placeholder="Enter your task description" ng-model="taskDescription" ng-enter="addTask(taskDescription)" />
         </div>
     </div>
 
+    <div class="row col-xs-12">
+        <p>
+            Total amount of time today: {{ totalTimeSpent() | formattedSeconds }}
+        </p>
+    </div>
+
     <hr/>
-    
+
     <div class="row" ng-repeat="task in tasks">
         <div class="col-md-12">
             <div class="panel panel-default">

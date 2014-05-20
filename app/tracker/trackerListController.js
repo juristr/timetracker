@@ -4,8 +4,8 @@
 
     angular
         .module('pomodoro')
-        .controller('trackerListController', ['$scope', function($scope){
-            var timer = undefined;
+        .controller('trackerListController', ['$scope', 'timeCalculationService', function($scope, timeCalculationService){
+            var timer;
 
             $scope.tasks = [{
                 id: guid(),
@@ -17,9 +17,9 @@
                 task.isPlaying = true;
 
                 if(typeof(task.startTime) === 'undefined'){
-                    task.startTime = new Date();    
+                    task.startTime = new Date();
                 }
-                
+
                 if(typeof(task.timeSpent) === 'undefined'){
                     task.timeSpent = 0;
                 }
@@ -40,13 +40,13 @@
 
                 //task.timeSpent += parseInt(moment(moment().diff(moment(task.startTime))).format('ss'), 10);
                 // moment.utc(moment(new Date(),"DD/MM/YYYY HH:mm:ss").diff(moment(task.startTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
-        
+
                 //reset
                 task.startTime = undefined;
             };
 
             // this should be on the model
-            
+
             /*
             $scope.timeSpent = function(task){
                 return moment.utc(moment(task.endTime,"DD/MM/YYYY HH:mm:ss").diff(moment(task.startTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
@@ -68,12 +68,16 @@
 
                 for(var i=0; i < $scope.tasks.length; i++){
                   if($scope.tasks[i].id === task.id){
-                    break;    
+                    break;
                   }
                 }
 
                 // remove element
                 $scope.tasks.splice(i, 1);
+            };
+
+            $scope.totalTimeSpent = function(){
+                return timeCalculationService.sumSecondsSpent($scope.tasks);
             };
 
         }]);
