@@ -1,19 +1,17 @@
-<div class="col-md-12">
-    <section class="card">
-        <span class="pull-right delete-task" ng-click="deleteTask(taskItem)"><i class="fa fa-times"></i></span>
-        <h1>{{ taskItem.title }}</h1>
-        <h2>
-            <strong>
-            <time>
-                {{ taskItem.timeSpent | formattedSeconds }}
-            </time>
-            </strong>
-        </h2>
-        <button class="btn btn-default" ng-if="taskItem.isPlaying===false" ng-click="play(taskItem)">
-            <i class="fa fa-play"></i>
-        </button>
-        <button class="btn btn-default" ng-if="taskItem.isPlaying==true" ng-click="stop(taskItem)">
-            <i class="fa fa-stop"></i>
-        </button>
-    </section>
-</div>
+<section class="card">
+    <span class="pull-right delete-task" ng-click="deleteTask(taskItem)"><i class="fa fa-times"></i></span>
+    <h1>{{ taskItem.title }}</h1>
+    <h2>
+        <strong>
+        <time>
+            {{ taskItem.timeSpent | formattedSeconds }}
+        </time>
+        </strong>
+    </h2>
+    <button class="btn btn-default" ng-if="taskItem.isPlaying===false" ng-click="play(taskItem)">
+        <i class="fa fa-play"></i>
+    </button>
+    <button class="btn btn-default" ng-if="taskItem.isPlaying==true" ng-click="stop(taskItem)">
+        <i class="fa fa-stop"></i>
+    </button>
+</section>

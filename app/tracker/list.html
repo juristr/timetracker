@@ -1,13 +1,9 @@
-<div class="col-xs-12 main">
+<div class="main">
 
-    <div class="row">
-        <div class="col-xs-12">
-            <input type="text" class="form-control" placeholder="Enter your task description" ng-model="taskDescription" ng-enter="addTask(taskDescription)" />
-        </div>
-    </div>
+    <input type="text" placeholder="Enter your task description" ng-model="taskDescription" ng-enter="addTask(taskDescription)" autofocus>
 
-    <div style="clear:both"/>
-
+    <header></header>
+    
     <section class="card">
         <h1><strong>Summary</strong></h1>
         <h2>
@@ -15,9 +11,7 @@
         </h2>
     </section>
 
-    <div class="row" ng-repeat="task in tasks | filter:taskDescription">
-        <task task="task"></task>
-    </div>
+    <task task="task" ng-repeat="task in tasks | filter:taskDescription"></task>    
     
     <section class="card" ng-if="tasks.length === 0">
         <p>
