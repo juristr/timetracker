@@ -1,7 +1,9 @@
-Simple Pomodoro timer
+Time tracker
 ----
 
-Simple Pomodoro webapp timer, just to play around with some JS frameworks.
+My small playground for Angular.js. An app I'm incrementally developing which happens to also help me keep track of my time I spent on certain tasks.
+
+![](time-tracker-demo.gif)
 
 ## Getting it
 
