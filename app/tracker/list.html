@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-xs-12 main">
 
     <div class="row">
         <div class="col-xs-12">
@@ -6,21 +6,23 @@
         </div>
     </div>
 
-    <div class="row col-xs-12">
-        <p>
-            <strong>Total amount of time: {{ totalTimeSpent() | formattedSeconds }}</strong>
-        </p>
-    </div>
+    <div style="clear:both"/>
 
-    <hr style="clear:both"/>
+    <section class="card">
+        <h1><strong>Summary</strong></h1>
+        <h2>
+            Total amount of time: {{ totalTimeSpent() | formattedSeconds }}
+        </h2>
+    </section>
 
     <div class="row" ng-repeat="task in tasks | filter:taskDescription">
         <task task="task"></task>
     </div>
-    <div class="row" ng-if="tasks.length === 0">
-        <p class="col-xs-12">
-            There are no tasks so far. Try adding some!
+    
+    <section class="card" ng-if="tasks.length === 0">
+        <p>
+            There are no tasks so far. You may want to add some.
         </p>
-    </div>
+    </section>
 
 </div>
