@@ -16,7 +16,9 @@
                 $scope.taskDescription = '';
             };
 
-
+            $scope.totalTimeSpent = function(){
+                return timeCalculationService.sumSecondsSpent($scope.tasks);
+            };
 
         }]);
 
