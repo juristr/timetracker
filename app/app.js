@@ -4,7 +4,8 @@
 
     angular
         .module('pomodoro', [
-          'ngRoute'
+          'ngRoute',
+          'LocalStorageModule'
         ])
         .config(function($routeProvider){
           $routeProvider

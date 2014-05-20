@@ -20,6 +20,7 @@
     "fontawesome": "~4.1.0",
     "angular": "1.2.x",
     "angular-route": "~1.2.x",
-    "moment": "~2.6.0"
+    "moment": "~2.6.0",
+    "angular-local-storage": "~0.0.4"
   }
 }

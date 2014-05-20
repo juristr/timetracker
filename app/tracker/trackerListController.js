@@ -4,14 +4,10 @@
 
     angular
         .module('pomodoro')
-        .controller('trackerListController', ['$scope', 'timeCalculationService', function($scope, timeCalculationService){
+        .controller('trackerListController', ['$scope', 'timeCalculationService', 'taskListService', function($scope, timeCalculationService, taskListService){
             var timer;
 
-            $scope.tasks = [{
-                id: guid(),
-                isPlaying: false,
-                title: 'demo'
-            }];
+            $scope.tasks = taskListService.getAllTasks();
 
             $scope.play = function(task){
                 task.isPlaying = true;
@@ -31,6 +27,7 @@
                 }, 1000);
 
             };
+
             $scope.stop = function(task){
                 task.isPlaying = false;
 
@@ -45,18 +42,8 @@
                 task.startTime = undefined;
             };
 
-            // this should be on the model
-
-            /*
-            $scope.timeSpent = function(task){
-                return moment.utc(moment(task.endTime,"DD/MM/YYYY HH:mm:ss").diff(moment(task.startTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
-            };*/
-
             $scope.addTask = function(taskDescription){
-
-                $scope.tasks.push({
-                    id: guid(),
-                    isPlaying: false,
+                taskListService.addTask({
                     title: taskDescription
                 });
 
@@ -64,16 +51,7 @@
             };
 
             $scope.deleteTask = function(task){
-
-
-                for(var i=0; i < $scope.tasks.length; i++){
-                  if($scope.tasks[i].id === task.id){
-                    break;
-                  }
-                }
-
-                // remove element
-                $scope.tasks.splice(i, 1);
+                taskListService.deleteTask(task);
             };
 
             $scope.totalTimeSpent = function(){
@@ -81,18 +59,5 @@
             };
 
         }]);
-
-
-    var guid = (function() {
-        function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000)
-                     .toString(16)
-                     .substring(1);
-        }
-        return function() {
-          return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-                 s4() + '-' + s4() + s4() + s4();
-        };
-      })();
 
 })();
