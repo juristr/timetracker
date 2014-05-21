@@ -1,7 +1,7 @@
 Time tracker
 ----
 
-My small playground for Angular.js. An app I'm incrementally developing which happens to also help me keep track of my time I spent on certain tasks.
+My small playground for Angular.js. An app I'm incrementally developing which happens to also help me keep track of where I spent my time during the day.
 
 ![](time-tracker-demo.gif)
 
