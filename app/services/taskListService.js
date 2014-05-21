@@ -26,7 +26,8 @@
                     }
                     task.isPlaying = false;
 
-                    taskList.push(task);
+                    // taskList.push(task);
+                    taskList.unshift(task);
 
                     saveToLocalStorage(taskList);
                 },
