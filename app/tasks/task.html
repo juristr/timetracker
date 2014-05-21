@@ -8,6 +8,10 @@
         <i class="fa fa-stop"></i>
     </button>
 
+    <button class="btn btn-default pull-right" ng-click="addInterruption(taskItem)">
+        {{ taskItem.interruptions }} <i class="fa fa-bolt"></i>
+    </button>
+
     <h1>{{ taskItem.title }}</h1>
     <h2>
         <strong>

@@ -46,6 +46,13 @@
                         taskListService.saveTasks();
                     };
 
+                    $scope.addInterruption = function(task){
+                        task.interruptions = task.interruptions || 0;
+                        task.interruptions++;
+
+                        taskListService.saveTasks();
+                    };
+
                     $scope.deleteTask = function(task){
                         taskListService.deleteTask(task);
                     };
