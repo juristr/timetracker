@@ -3,7 +3,7 @@
     <input type="text" placeholder="Enter your task description" ng-model="taskDescription" ng-enter="addTask(taskDescription)" autofocus>
 
     <header></header>
-    
+
     <section class="card">
         <h1><strong>Summary</strong></h1>
         <h2>
@@ -11,8 +11,8 @@
         </h2>
     </section>
 
-    <task task="task" ng-repeat="task in tasks | filter:taskDescription"></task>    
-    
+    <task task="task" ng-repeat="task in tasks track by task.id | filter:taskDescription"></task>
+
     <section class="card" ng-if="tasks.length === 0">
         <p>
             There are no tasks so far. You may want to add some.
