@@ -21,6 +21,7 @@
     "angular": "1.2.x",
     "angular-route": "~1.2.x",
     "moment": "~2.6.0",
-    "angular-local-storage": "~0.0.4"
+    "angular-local-storage": "~0.0.4",
+    "angular-ui-chart": "latest"
   }
 }

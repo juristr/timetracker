@@ -1,0 +1,20 @@
+<div class="main">
+
+    <input type="text" placeholder="Enter your task description" ng-model="taskDescription" ng-enter="addTask(taskDescription)" autofocus>
+
+    <header></header>
+
+    <section class="card">
+        <h1><strong>Summary</strong></h1>
+        <h2>
+            Total amount of time: {{ totalTimeSpent() | formattedSeconds }}
+        </h2>
+    </section>
+
+    <section class="card">
+        <h1><strong>Overview</strong></h1>
+        <h2>Time available vs. effective time logged</h2>
+        <div ui-chart="data" chart-options="chartOptions"></div>
+    </section>
+
+</div>

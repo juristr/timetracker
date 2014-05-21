@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="container">
-
+    <div class="container"
+>
         <!-- Static navbar -->
         <!--
         <div class="navbar navbar-default" role="navigation">
@@ -37,19 +37,27 @@
             </div>
         </div>
         -->
-        
+
         <div class="row" ng-view></div>
     </div>
 
-    <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+
+
+    <script type="text/javascript" src="bower_components/jqplot/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="bower_components/jqplot/plugins/jqplot.pierenderer.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-chart/src/chart.js"></script>
+
 
     <script src="app/app.js"></script>
     <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
 
     <script src="app/tracker/trackerListController.js"></script>
+    <script src="app/performances/performancesController.js"></script>
 
     <script src="app/tasks/taskDirective.js"></script>
 
