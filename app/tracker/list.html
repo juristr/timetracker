@@ -11,7 +11,7 @@
         </h2>
     </section>
 
-    <task task="task" ng-repeat="task in tasks | filter:taskDescription track by task.id"></task>
+    <task task="task" ng-repeat="task in tasks | filter:taskDescription"></task>
 
     <section class="card" ng-if="tasks.length === 0">
         <p>

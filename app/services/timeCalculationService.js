@@ -10,7 +10,7 @@
 
                     if(taskList){
                         for(var i=0; i<taskList.length; i++){
-                            sumOfSecondsSpent += taskList[i].timeSpent;
+                            sumOfSecondsSpent += taskList[i].timeSpent || 0;
                         }
                     }
 
