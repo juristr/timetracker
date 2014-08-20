@@ -16,7 +16,8 @@
             })
             .when('/performances', {
               templateUrl: 'app/performances/outline.html',
-              controller: 'performancesController'
+              controller: 'PerformancesController',
+              controllerAs: 'vm'
             })
             .otherwise({
               redirectTo: '/'
