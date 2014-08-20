@@ -2,8 +2,17 @@
 
     'use strict';
 
+    angular
+        .module('pomodoro')
+        .filter('formattedSeconds', formattedSeconds);
 
-    var humanizeDuration = function(input) {
+    function formattedSeconds(){
+        return function(input){
+            return humanizeDuration(input);
+        };
+    }
+
+    function humanizeDuration(input) {
         var units = 's';
         // units is a string with possible values of y, M, w, d, h, m, s, ms
         var duration = moment().startOf('day').add(units, input),
@@ -17,13 +26,5 @@
 
         return duration.format(format);
     }
-
-    angular
-        .module('pomodoro')
-        .filter('formattedSeconds', function(){
-            return function(input){
-                return humanizeDuration(input);
-            };
-        });
 
 })();
