@@ -3,20 +3,26 @@
     'use strict';
 
     angular.module('pomodoro')
-        .factory('timeCalculationService', function(){
-            return {
-                sumSecondsSpent: function(taskList){
-                    var sumOfSecondsSpent = 0;
+        .factory('timeCalculationService', timeCalculationService);
 
-                    if(taskList){
-                        for(var i=0; i<taskList.length; i++){
-                            sumOfSecondsSpent += taskList[i].timeSpent || 0;
-                        }
-                    }
+    function timeCalculationService(){
+        var service = {};
+        service.sumSecondsSpent = sumSecondsSpent;
+        return service;
 
-                    return sumOfSecondsSpent;
+        ///////////////////
+
+        function sumSecondsSpent(taskList){
+            var sumOfSecondsSpent = 0;
+
+            if(taskList){
+                for(var i=0; i<taskList.length; i++){
+                    sumOfSecondsSpent += taskList[i].timeSpent || 0;
                 }
-            };
-        });
+            }
 
+            return sumOfSecondsSpent;
+        }
+
+    }
 })();
