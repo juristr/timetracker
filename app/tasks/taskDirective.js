@@ -3,61 +3,74 @@
     'use strict';
 
     angular.module('pomodoro')
-        .directive('task', ['taskListService', 'timeCalculationService', function(taskListService, timeCalculationService){
-            return {
-                restrict: 'E',
-                scope: {
-                    taskItem: '=task'
-                },
-                templateUrl: 'app/tasks/task.html',
-                controller: function($scope){
-                    var timer;
+        .directive('task', task);
 
-                    $scope.play = function(task){
-                        task.isPlaying = true;
+    task.$inject = ['taskListService', 'timeCalculationService'];
 
-                        if(typeof(task.startTime) === 'undefined'){
-                            task.startTime = new Date();
-                        }
+    function task(taskListService, timeCalculationService){
+        return {
+            restrict: 'E',
+            scope: {
+                taskItem: '=task'
+            },
+            templateUrl: 'app/tasks/task.html',
+            controller: function($scope){
+                var timer,
+                    vm = this;
 
-                        if(typeof(task.timeSpent) === 'undefined'){
-                            task.timeSpent = 0;
-                        }
+                vm.play = play;
+                vm.stop = stop;
+                vm.addInterruption = addInterruption;
+                vm.deleteTask = deleteTask;
 
-                        timer = setInterval(function() {
-                            $scope.$apply(function(){
-                                task.timeSpent += 1;
-                            });
-                        }, 1000);
-                    };
+                //////////
 
-                    $scope.stop = function(task){
-                        task.isPlaying = false;
+                function play(task){
+                    task.isPlaying = true;
 
-                        if(timer){
-                            clearInterval(timer);
-                        }
+                    if(typeof(task.startTime) === 'undefined'){
+                        task.startTime = new Date();
+                    }
 
-                        //task.timeSpent += parseInt(moment(moment().diff(moment(task.startTime))).format('ss'), 10);
-                        // moment.utc(moment(new Date(),"DD/MM/YYYY HH:mm:ss").diff(moment(task.startTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
+                    if(typeof(task.timeSpent) === 'undefined'){
+                        task.timeSpent = 0;
+                    }
 
-                        //reset
-                        task.startTime = undefined;
-                        taskListService.saveTasks();
-                    };
-
-                    $scope.addInterruption = function(task){
-                        task.interruptions = task.interruptions || 0;
-                        task.interruptions++;
-
-                        taskListService.saveTasks();
-                    };
-
-                    $scope.deleteTask = function(task){
-                        taskListService.deleteTask(task);
-                    };
+                    timer = setInterval(function() {
+                        $scope.$apply(function(){
+                            task.timeSpent += 1;
+                        });
+                    }, 1000);
                 }
-            };
-        }]);
+
+                function stop(task){
+                    task.isPlaying = false;
+
+                    if(timer){
+                        clearInterval(timer);
+                    }
+
+                    //task.timeSpent += parseInt(moment(moment().diff(moment(task.startTime))).format('ss'), 10);
+                    // moment.utc(moment(new Date(),"DD/MM/YYYY HH:mm:ss").diff(moment(task.startTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
+
+                    //reset
+                    task.startTime = undefined;
+                    taskListService.saveTasks();
+                }
+
+                function addInterruption(task){
+                    task.interruptions = task.interruptions || 0;
+                    task.interruptions++;
+
+                    taskListService.saveTasks();
+                }
+
+                function deleteTask(task){
+                    taskListService.deleteTask(task);
+                }
+            },
+            controllerAs: 'taskCtrl'
+        };
+    }
 
 })();

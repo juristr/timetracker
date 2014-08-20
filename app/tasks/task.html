@@ -1,14 +1,14 @@
 <section class="card">
-    <button class="btn btn-default pull-right" ng-click="deleteTask(taskItem)"><i class="fa fa-times"></i></button>
+    <button class="btn btn-default pull-right" ng-click="taskCtrl.deleteTask(taskItem)"><i class="fa fa-times"></i></button>
 
-    <button class="btn btn-default pull-right" ng-if="taskItem.isPlaying===false" ng-click="play(taskItem)">
+    <button class="btn btn-default pull-right" ng-if="taskItem.isPlaying===false" ng-click="taskCtrl.play(taskItem)">
         <i class="fa fa-play"></i>
     </button>
-    <button class="btn btn-default pull-right" ng-if="taskItem.isPlaying==true" ng-click="stop(taskItem)">
+    <button class="btn btn-default pull-right" ng-if="taskItem.isPlaying==true" ng-click="taskCtrl.stop(taskItem)">
         <i class="fa fa-stop"></i>
     </button>
 
-    <button class="btn btn-default pull-right" ng-click="addInterruption(taskItem)">
+    <button class="btn btn-default pull-right" ng-click="taskCtrl.addInterruption(taskItem)">
         {{ taskItem.interruptions }} <i class="fa fa-bolt"></i>
     </button>
 
