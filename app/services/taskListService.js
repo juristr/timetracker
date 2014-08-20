@@ -3,58 +3,69 @@
     'use strict';
 
     angular.module('pomodoro')
-        .factory('taskListService', ['localStorageService', function(localStorageService){
+        .factory('taskListService', taskListService);
 
-            var taskList = [];
+    taskListService.$inject = ['localStorageService'];
 
-            var saveToLocalStorage = function(taskList){
-                localStorageService.set('pomodoro-tracker-app', taskList);
-            };
-            var loadFromLocalStorage = function(){
-                return localStorageService.get('pomodoro-tracker-app') || [];
-            };
+    function taskListService(localStorageService){
+        var taskListCache = [];
 
-            return {
-                getAllTasks: function(){
-                    taskList = loadFromLocalStorage();
-                    return taskList;
-                },
+        var service = {};
+        service.getAllTasks = getAllTasks;
+        service.addTask = addTask;
+        service.deleteTask = deleteTask;
+        service.saveTasks = saveTasks;
 
-                addTask: function(task){
-                    if(typeof(task.id) === 'undefined'){
-                        task.id = guid();
-                    }
-                    task.isPlaying = false;
+        return service;
 
-                    // taskList.push(task);
-                    taskList.unshift(task);
+        //////////////////////
 
-                    saveToLocalStorage(taskList);
-                },
+        function getAllTasks(){
+            taskListCache = loadFromLocalStorage();
+            return taskListCache;
+        }
 
-                deleteTask: function(task){
+        function addTask(task){
+            if(typeof(task.id) === 'undefined'){
+                task.id = guid();
+            }
+            task.isPlaying = false;
 
-                    // loop to the task of interest
-                    for(var i=0; i < taskList.length; i++){
-                      if(taskList[i].id === task.id){
-                        break;
-                      }
-                    }
+            // taskListCache.push(task);
+            taskListCache.unshift(task);
 
-                    // remove element
-                    taskList.splice(i, 1);
+            saveToLocalStorage(taskListCache);
+        }
 
-                    saveToLocalStorage(taskList);
-                },
+        function deleteTask(task){
 
-                saveTasks: function(){
-                    saveToLocalStorage(taskList);
-                }
+            // loop to the task of interest
+            for(var i=0; i < taskListCache.length; i++){
+              if(taskListCache[i].id === task.id){
+                break;
+              }
+            }
 
-            };
+            // remove element
+            taskListCache.splice(i, 1);
+
+            saveToLocalStorage(taskListCache);
+        }
+
+        function saveTasks(){
+            saveToLocalStorage(taskListCache);
+        }
 
 
-        }]);
+        function saveToLocalStorage(taskListCache){
+            localStorageService.set('pomodoro-tracker-app', taskListCache);
+        }
+
+        function loadFromLocalStorage(){
+            return localStorageService.get('pomodoro-tracker-app') || [];
+        }
+    }
+
 
     // utility functions
     var guid = (function() {
