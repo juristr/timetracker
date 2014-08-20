@@ -1,19 +1,19 @@
 <div class="main">
 
-    <input type="text" placeholder="Enter your task description" ng-model="taskDescription" ng-enter="addTask(taskDescription)" autofocus>
+    <input type="text" placeholder="Enter your task description" ng-model="vm.taskDescription" ng-enter="vm.addTask(vm.taskDescription)" autofocus>
 
     <header></header>
 
     <section class="card">
         <h1><strong>Summary</strong></h1>
         <h2>
-            Total amount of time: {{ totalTimeSpent() | formattedSeconds }}
+            Total amount of time: {{ vm.totalTimeSpent() | formattedSeconds }}
         </h2>
     </section>
 
-    <task task="task" ng-repeat="task in tasks | filter:taskDescription"></task>
+    <task task="task" ng-repeat="task in vm.tasks | filter:vm.taskDescription"></task>
 
-    <section class="card" ng-if="tasks.length === 0">
+    <section class="card" ng-if="vm.tasks.length === 0">
         <p>
             There are no tasks so far. You may want to add some.
         </p>

@@ -1,7 +1,6 @@
 (function(){
     'use strict';
 
-
     angular
         .module('pomodoro', [
           'ngRoute',
@@ -12,7 +11,8 @@
           $routeProvider
             .when('/', {
               templateUrl: 'app/tracker/list.html',
-              controller: 'trackerListController'
+              controller: 'TrackerListController',
+              controllerAs: 'vm'
             })
             .when('/performances', {
               templateUrl: 'app/performances/outline.html',
