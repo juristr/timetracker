@@ -5,8 +5,6 @@
     angular.module('pomodoro')
         .factory('taskListService', taskListService);
 
-    taskListService.$inject = ['localStorageService'];
-
     function taskListService(localStorageService){
         var taskListCache = [];
 
@@ -66,6 +64,7 @@
         }
     }
 
+    taskListService.$inject = ['localStorageService'];
 
     // utility functions
     var guid = (function() {
