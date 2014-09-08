@@ -15,3 +15,11 @@ $ bower install
 ```
 
 ..to get all dependencies.
+
+## Run it
+
+```
+$ grunt
+```
+
+This launches the connect devserver on port 9000.
